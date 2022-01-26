@@ -11,6 +11,6 @@ namespace WebApi.Domain.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Organisation> Organisations { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace WebApi.Domain.Models
         public string Email { get; set; }
         public string Name { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public ICollection<Organisation> Organisations { get; set; }
     }
 }
