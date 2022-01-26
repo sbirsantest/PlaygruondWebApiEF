@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.DataAccess;
 using WebApi.Domain.Config;
 
 namespace WebApi
@@ -30,6 +31,8 @@ namespace WebApi
             var settings = new GlobalConfig();
             Configuration.Bind(GlobalConfig.SectionName, settings);
             services.AddSingleton(settings);
+
+            services.AddWebApiDataAccess();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
