@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApi.Domain.Models;
 
-namespace WebApi.DataAccess.Contexts
+namespace WebApi.DataAccess.Data.Contexts
 {
     public class AdministationDbContext : DbContext
     {
