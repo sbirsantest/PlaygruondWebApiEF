@@ -8,6 +8,8 @@ namespace WebApi.Domain.Models
 {
     public class User
     {
+        public const int NameMaxLength = 128;
+
         public Guid Id { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }

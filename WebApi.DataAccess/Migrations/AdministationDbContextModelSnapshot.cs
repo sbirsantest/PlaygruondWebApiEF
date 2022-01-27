@@ -8,7 +8,7 @@ using WebApi.DataAccess.Data.Contexts;
 
 namespace WebApi.DataAccess.Migrations
 {
-    [DbContext(typeof(AdministationDbContext))]
+    [DbContext(typeof(AdministrationDbContext))]
     partial class AdministationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -19,19 +19,19 @@ namespace WebApi.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("OrganisationUser", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Membership", b =>
                 {
-                    b.Property<Guid>("OrganisationsId")
+                    b.Property<Guid>("OrganisationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UsersId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("OrganisationsId", "UsersId");
+                    b.HasKey("OrganisationId", "UserId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("OrganisationUser");
+                    b.ToTable("OrganisationMembers");
                 });
 
             modelBuilder.Entity("WebApi.Domain.Models.Organisation", b =>
@@ -41,7 +41,9 @@ namespace WebApi.DataAccess.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.HasKey("Id");
 
@@ -55,29 +57,36 @@ namespace WebApi.DataAccess.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("OrganisationUser", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Membership", b =>
                 {
-                    b.HasOne("WebApi.Domain.Models.Organisation", null)
+                    b.HasOne("WebApi.Domain.Models.Organisation", "Organisation")
                         .WithMany()
-                        .HasForeignKey("OrganisationsId")
+                        .HasForeignKey("OrganisationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApi.Domain.Models.User", null)
+                    b.HasOne("WebApi.Domain.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UsersId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Organisation");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

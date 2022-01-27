@@ -12,7 +12,7 @@ namespace WebApi.DataAccess
     {
         public static IServiceCollection AddWebApiDataAccess(this IServiceCollection services)
         {
-            services.AddDbContext<AdministationDbContext>();
+            services.AddDbContext<AdministrationDbContext>();
             return services;
         }
     }

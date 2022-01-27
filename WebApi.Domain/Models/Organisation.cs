@@ -8,6 +8,8 @@ namespace WebApi.Domain.Models
 {
     public class Organisation
     {
+        public const int NameMaxLength = 128;
+
         public Guid Id { get; set; }
         public string Name { get; set; }
 

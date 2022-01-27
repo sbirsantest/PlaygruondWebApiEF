@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApi.DataAccess.Data.Config;
 using WebApi.Domain.Config;
 using WebApi.Domain.Models;
 
 namespace WebApi.DataAccess.Data.Contexts
 {
-    public class AdministationDbContext : DbContext
+    public class AdministrationDbContext : DbContext
     {
         private readonly GlobalConfig _config;
 
@@ -17,11 +18,11 @@ namespace WebApi.DataAccess.Data.Contexts
         public DbSet<User> Users { get; set; }
 
         // constructor used at design time
-        internal AdministationDbContext(DbContextOptions<AdministationDbContext> options) : base(options)
+        internal AdministrationDbContext(DbContextOptions<AdministrationDbContext> options) : base(options)
         {
         }
 
-        public AdministationDbContext(DbContextOptions<AdministationDbContext> options, GlobalConfig config) : base(options)
+        public AdministrationDbContext(DbContextOptions<AdministrationDbContext> options, GlobalConfig config) : base(options)
         {
             _config = config;
         }
@@ -52,5 +53,12 @@ namespace WebApi.DataAccess.Data.Contexts
                 _config.AdminDbConnectionString : $"Password=\"{_config.AdminDbPassword}\";{_config.AdminDbConnectionString}";
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new OrganisationConfig());
+            modelBuilder.ApplyConfiguration(new UserConfig());
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

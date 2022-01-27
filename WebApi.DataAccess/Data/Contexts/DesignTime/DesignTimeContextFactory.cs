@@ -9,7 +9,7 @@ using WebApi.Domain.Config;
 
 namespace WebApi.DataAccess.Data.Contexts.DesignTime
 {
-    public class DesignTimeContextFactory : IDesignTimeDbContextFactory<AdministationDbContext>
+    public class DesignTimeContextFactory : IDesignTimeDbContextFactory<AdministrationDbContext>
     {
         //const string EnvAdminDbConnectionString = "WebApiAdminDbConnectionString";
 
@@ -42,7 +42,7 @@ namespace WebApi.DataAccess.Data.Contexts.DesignTime
             return optionsBuilder;
         }
 
-        AdministationDbContext IDesignTimeDbContextFactory<AdministationDbContext>.CreateDbContext(string[] args)
+        AdministrationDbContext IDesignTimeDbContextFactory<AdministrationDbContext>.CreateDbContext(string[] args)
         {
             // use the following command (send the connection string through args) before run the migration
             // update-database -args 'Server=PC310094\SQLEXPRESS;Database=webapi_administation;User Id=sorinbtest;MultipleActiveResultSets=false;Encrypt=False;Application Name=WebApi;Password=Password123!@#'
@@ -52,8 +52,8 @@ namespace WebApi.DataAccess.Data.Contexts.DesignTime
 
             string connectionString = string.Join(" ", args);
 
-            var optionsBuilder = SetupOptionsWithoutEnv<AdministationDbContext>(connectionString);
-            return new AdministationDbContext(optionsBuilder.Options);
+            var optionsBuilder = SetupOptionsWithoutEnv<AdministrationDbContext>(connectionString);
+            return new AdministrationDbContext(optionsBuilder.Options);
         }
     }
 }
