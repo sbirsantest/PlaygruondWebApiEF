@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.DataAccess.Data.Contexts;
 
-namespace WebApi.DataAccess.Migrations
+namespace WebApi.DataAccess.Migrations.Administration
 {
     [DbContext(typeof(AdministrationDbContext))]
-    [Migration("20220127075933_ConfigureOrgAndUsers")]
-    partial class ConfigureOrgAndUsers
+    partial class AdministrationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +19,7 @@ namespace WebApi.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WebApi.Domain.Models.Membership", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Administration.Membership", b =>
                 {
                     b.Property<Guid>("OrganisationId")
                         .HasColumnType("uniqueidentifier");
@@ -36,7 +34,7 @@ namespace WebApi.DataAccess.Migrations
                     b.ToTable("OrganisationMembers");
                 });
 
-            modelBuilder.Entity("WebApi.Domain.Models.Organisation", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Administration.Organisation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,32 +50,35 @@ namespace WebApi.DataAccess.Migrations
                     b.ToTable("Organisations");
                 });
 
-            modelBuilder.Entity("WebApi.Domain.Models.User", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Administration.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("WebApi.Domain.Models.Membership", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Administration.Membership", b =>
                 {
-                    b.HasOne("WebApi.Domain.Models.Organisation", "Organisation")
+                    b.HasOne("WebApi.Domain.Models.Administration.Organisation", "Organisation")
                         .WithMany()
                         .HasForeignKey("OrganisationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApi.Domain.Models.User", "User")
+                    b.HasOne("WebApi.Domain.Models.Administration.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApi.Domain.Models
+namespace WebApi.Domain.Models.Administration
 {
     public class User
     {

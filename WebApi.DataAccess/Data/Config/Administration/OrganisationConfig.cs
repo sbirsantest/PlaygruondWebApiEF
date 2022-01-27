@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebApi.Domain.Models;
+using WebApi.Domain.Models.Administration;
 
-namespace WebApi.DataAccess.Data.Config
+namespace WebApi.DataAccess.Data.Config.Administration
 {
     class OrganisationConfig : IEntityTypeConfiguration<Organisation>
     {

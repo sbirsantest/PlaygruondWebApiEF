@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.DataAccess.Data.Contexts;
 
-namespace WebApi.DataAccess.Migrations
+namespace WebApi.DataAccess.Migrations.Administration
 {
     [DbContext(typeof(AdministrationDbContext))]
-    [Migration("20220126154928_InitialMigration")]
+    [Migration("20220127085159_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,65 +21,74 @@ namespace WebApi.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("OrganisationUser", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Administration.Membership", b =>
                 {
-                    b.Property<Guid>("OrganisationsId")
+                    b.Property<Guid>("OrganisationId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UsersId")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("OrganisationsId", "UsersId");
+                    b.HasKey("OrganisationId", "UserId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("OrganisationUser");
+                    b.ToTable("OrganisationMembers");
                 });
 
-            modelBuilder.Entity("WebApi.Domain.Models.Organisation", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Administration.Organisation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Organisations");
                 });
 
-            modelBuilder.Entity("WebApi.Domain.Models.User", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Administration.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("OrganisationUser", b =>
+            modelBuilder.Entity("WebApi.Domain.Models.Administration.Membership", b =>
                 {
-                    b.HasOne("WebApi.Domain.Models.Organisation", null)
+                    b.HasOne("WebApi.Domain.Models.Administration.Organisation", "Organisation")
                         .WithMany()
-                        .HasForeignKey("OrganisationsId")
+                        .HasForeignKey("OrganisationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApi.Domain.Models.User", null)
+                    b.HasOne("WebApi.Domain.Models.Administration.User", "User")
                         .WithMany()
-                        .HasForeignKey("UsersId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Organisation");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

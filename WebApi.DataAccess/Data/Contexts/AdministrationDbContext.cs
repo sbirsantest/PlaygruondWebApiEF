@@ -1,12 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebApi.DataAccess.Data.Config;
+using WebApi.DataAccess.Data.Config.Administration;
 using WebApi.Domain.Config;
-using WebApi.Domain.Models;
+using WebApi.Domain.Models.Administration;
 
 namespace WebApi.DataAccess.Data.Contexts
 {
