@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.DataAccess.Data.Contexts;
 
-namespace WebApi.DataAccess.Migrations.Administration
+namespace WebApi.DataAccess.Data.Migrations.Administration
 {
     [DbContext(typeof(AdministrationDbContext))]
     partial class AdministrationDbContextModelSnapshot : ModelSnapshot

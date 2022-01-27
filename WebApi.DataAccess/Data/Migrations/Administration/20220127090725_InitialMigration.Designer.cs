@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.DataAccess.Data.Contexts;
 
-namespace WebApi.DataAccess.Migrations.Administration
+namespace WebApi.DataAccess.Data.Migrations.Administration
 {
     [DbContext(typeof(AdministrationDbContext))]
-    [Migration("20220127085159_InitialMigration")]
+    [Migration("20220127090725_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
