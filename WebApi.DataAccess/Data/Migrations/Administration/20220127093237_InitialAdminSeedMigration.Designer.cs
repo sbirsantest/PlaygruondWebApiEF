@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.DataAccess.Data.Contexts;
 
 namespace WebApi.DataAccess.Data.Migrations.Administration
 {
     [DbContext(typeof(AdministrationDbContext))]
-    partial class AdministrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220127093237_InitialAdminSeedMigration")]
+    partial class InitialAdminSeedMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +62,7 @@ namespace WebApi.DataAccess.Data.Migrations.Administration
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-de00000000de"),
-                            Name = "dev organisation"
+                            Name = "00000000-0000-0000-0000-DE00000000DE"
                         });
                 });
 

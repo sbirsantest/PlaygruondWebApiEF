@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApi.DataAccess.Data.Config.Administration;
+using WebApi.DataAccess.Data.Seeds.Administration;
 using WebApi.Domain.Config;
 using WebApi.Domain.Models.Administration;
 
@@ -52,6 +53,8 @@ namespace WebApi.DataAccess.Data.Contexts
         {
             modelBuilder.ApplyConfiguration(new OrganisationConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
+
+            modelBuilder.AddInitialAdministrationSeed();
 
             base.OnModelCreating(modelBuilder);
         }
