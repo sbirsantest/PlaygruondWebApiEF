@@ -13,6 +13,9 @@ namespace WebApi.DataAccess.Data.Seeds.Administration
         const string DevOrganisationId = "00000000-0000-0000-0000-DE00000000DE";
         const string DevOrganisationName = "dev organisation";
 
+        const string ManagerOrganisationId = "00000000-0000-0000-0000-B000000000B0";
+        const string ManagerOrganisationName = "manager organisation";
+
         const string AdminUserId = "00000000-0000-0000-0000-AD00000000AD";
         const string AdminUserName = "admin user";
         const string AdminUserEmail = "admin@admin.com";
@@ -24,6 +27,11 @@ namespace WebApi.DataAccess.Data.Seeds.Administration
                 {
                     Id = Guid.Parse(DevOrganisationId),
                     Name = DevOrganisationName
+                },
+                new Organisation
+                {
+                    Id = Guid.Parse(ManagerOrganisationId),
+                    Name = ManagerOrganisationName
                 });
 
             modelBuilder.Entity<User>().HasData(
@@ -38,6 +46,11 @@ namespace WebApi.DataAccess.Data.Seeds.Administration
                 new Membership
                 {
                     OrganisationId = Guid.Parse(DevOrganisationId),
+                    UserId = Guid.Parse(AdminUserId)
+                },
+                new Membership
+                {
+                    OrganisationId = Guid.Parse(ManagerOrganisationId),
                     UserId = Guid.Parse(AdminUserId)
                 });
 
