@@ -18,6 +18,20 @@ namespace WebApi.DataAccess.Data.Config.Administration
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Name).HasMaxLength(User.NameMaxLength).IsRequired();
             builder.Property(e => e.Email).IsRequired();
+
+            Seed(builder);
         }
+
+        private static void Seed(EntityTypeBuilder<User> builder)
+        {
+            builder.HasData(
+                new User
+                {
+                    Id = Guid.Parse(UtilsConfig.AdminUserId),
+                    Name = UtilsConfig.AdminUserName,
+                    Email = UtilsConfig.AdminUserEmail
+                });
+        }
+
     }
 }

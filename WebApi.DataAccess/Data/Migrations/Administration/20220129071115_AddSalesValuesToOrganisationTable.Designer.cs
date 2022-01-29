@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.DataAccess.Data.Contexts;
 
 namespace WebApi.DataAccess.Data.Migrations.Administration
 {
     [DbContext(typeof(AdministrationDbContext))]
-    partial class AdministrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220129071115_AddSalesValuesToOrganisationTable")]
+    partial class AddSalesValuesToOrganisationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,11 +44,6 @@ namespace WebApi.DataAccess.Data.Migrations.Administration
                         new
                         {
                             OrganisationId = new Guid("00000000-0000-0000-0000-b000000000b0"),
-                            UserId = new Guid("00000000-0000-0000-0000-ad00000000ad")
-                        },
-                        new
-                        {
-                            OrganisationId = new Guid("00000000-0000-0000-0000-500000000050"),
                             UserId = new Guid("00000000-0000-0000-0000-ad00000000ad")
                         });
                 });

@@ -53,8 +53,9 @@ namespace WebApi.DataAccess.Data.Contexts
         {
             modelBuilder.ApplyConfiguration(new OrganisationConfig());
             modelBuilder.ApplyConfiguration(new UserConfig());
+            modelBuilder.ApplyConfiguration(new MembershipConfig());
 
-            modelBuilder.AddInitialAdministrationSeed();
+            //modelBuilder.AddInitialAdministrationSeed();
 
             base.OnModelCreating(modelBuilder);
         }

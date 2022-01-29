@@ -25,6 +25,28 @@ namespace WebApi.DataAccess.Data.Config.Administration
                        left => left.HasOne(m => m.Organisation).WithMany().HasForeignKey(m => m.OrganisationId),
                        join => join.ToTable("OrganisationMembers")
                    );
+
+            Seed(builder);
+        }
+
+        private static void Seed(EntityTypeBuilder<Organisation> builder)
+        {
+            builder.HasData(
+                new Organisation
+                {
+                    Id = Guid.Parse(UtilsConfig.DevOrganisationId),
+                    Name = UtilsConfig.DevOrganisationName
+                },
+                new Organisation
+                {
+                    Id = Guid.Parse(UtilsConfig.ManagerOrganisationId),
+                    Name = UtilsConfig.ManagerOrganisationName
+                },
+                new Organisation
+                {
+                    Id = Guid.Parse(UtilsConfig.SalesOrganisationId),
+                    Name = UtilsConfig.SalesOrganisationName
+                });
         }
     }
 }
