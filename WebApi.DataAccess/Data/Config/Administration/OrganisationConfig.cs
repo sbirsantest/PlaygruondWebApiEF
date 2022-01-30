@@ -25,6 +25,17 @@ namespace WebApi.DataAccess.Data.Config.Administration
                        left => left.HasOne(m => m.Organisation).WithMany().HasForeignKey(m => m.OrganisationId),
                        join => join.ToTable("OrganisationMembers")
                    );
+            //builder.HasMany<User>(o => o.Users)
+            //       .WithMany(u => u.Organisations)
+            //       .UsingEntity(
+            //           join => join.ToTable("OrganisationMembers").HasData(
+            //            new[] 
+            //                {
+            //                    new { OrganisationsId = Guid.Parse(UtilsConfig.DevOrganisationId), UsersId = Guid.Parse(UtilsConfig.AdminUserId)},
+            //                    new { OrganisationsId = Guid.Parse(UtilsConfig.ManagerOrganisationId), UsersId = Guid.Parse(UtilsConfig.AdminUserId)},
+            //                    new { OrganisationsId = Guid.Parse(UtilsConfig.SalesOrganisationId), UsersId = Guid.Parse(UtilsConfig.AdminUserId)},
+
+            //                }));
 
             Seed(builder);
         }
